@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <div align="center">
+        <h1>view user</h1>
+        <table border="1">
+            <thead>
+                <tr>
+                    <th>SrNo.</th>
+                    <th>Name</th>
+                    <th>Email</th>
+                    <th>Password</th>
+                    <th>Number</th>
+                    <th>Gender</th>
+                    <th>Hobby</th>
+                    <th>City</th>
+                </tr>
+            </thead>
+            <tbody>
+                <% record.map((val,i)=>{
+                    let {id,name,email,password,number,gender,hobby,city} = val;
+                    %>
+                    <tr>
+                        <td><%= ++i %></td>
+                        <td><%= name %></td>
+                        <td><%= email %></td>
+                        <td><%= password %></td>
+                        <td><%= number %></td>
+                        <td><%= gender %></td>
+                        <td><%= hobby %></td>
+                        <td><%= city %></td>
+                        <td>
+                            <a href="/deleteRecord?deleteId=<%= id %>">delete</a>
+                            <a href="/editRecord?id=<%= id %>">edit</a>
+                        </td>
+                    </tr>
+               <% }) %>
+            </tbody>
+        </table>
+
+        <a href="/">Add</a>
+    </div>
+</body>
+</html>

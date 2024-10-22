@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+
+    <div align="center">
+        <h1>add User</h1>
+        <form action="/insertUser" method="post">
+            <table border="1">
+                <tr>
+                    <td>Name:-</td>
+                    <td><input type="text" value="<%= data.name %>" name="name"></td>
+                </tr>
+                <tr>
+                    <td>Number:-</td>
+                    <td><input type="number" value="<%= data.number %>" name="number"></td>
+                </tr>
+                <tr>
+                    <td>Email:-</td>
+                    <td><input type="text" value="<%= data.email %>" name="email"></td>
+                </tr>
+                <tr>
+                    <td>Password:-</td>
+                    <td><input type="password" value="<%= data.password %>" name="password"></td>
+                </tr>
+                <tr>
+                    <td>Gender:-</td>
+                    <td>
+                        <input type="radio" <% if(data.gender == "male") { %> checked <% } %> name="gender" value="male">Male
+                        <input type="radio" <% if(data.gender == "female") { %> checked <% } %> name="gender" value="female">Female
+                    </td>
+                </tr>
+                <tr>
+                    <td>Hobby:-</td>
+                    <td>
+                        <input type="checkbox" <% if(data.hobby.includes("travelling")) { %> checked<% } %> name="hobby" value="travelling">Travelling
+                        <input type="checkbox" <% if(data.hobby.includes("photography")) { %> checked<% } %> name="hobby" value="photography">Photography
+                        <input type="checkbox" <% if(data.hobby.includes("gaming")) { %> checked<% } %> name="hobby" value="gaming">Gaming
+                        <input type="checkbox" <% if(data.hobby.includes("coding")) { %> checked<% } %> name="hobby" value="coding">Coding
+                    </td>
+                </tr>
+                <tr>
+                    <td>City:-</td>
+                    <td>
+                        <select name="city" id="">
+                            <option value="city">---select city---</option>
+                            <% 
+                                let city=["surat","Ahemdabad","Rajkot","Bharuch"];
+                                city.map((ci)=>{
+                            %>
+                                    <option <% if(data.city == ci) { %> selected <% } %> value="<%= ci %>"><%= ci %></option>
+
+                               <% }) %>
+                        </select>
+                    </td>
+                </tr>
+                <tr>
+                    <td></td>
+                    <td><input type="submit"></td>
+                </tr>
+            </table>
+        </form>
+    <a href="/view">View</a>
+
+    </div>
+
+</body>
+
+</html>
