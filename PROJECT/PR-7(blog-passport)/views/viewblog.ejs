@@ -1,0 +1,152 @@
+<!doctype html>
+<html class="no-js" lang="zxx">
+
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="x-ua-compatible" content="ie=edge">
+    <title>Business Brokerage</title>
+    <meta name="description" content="">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <!-- <link rel="manifest" href="site.webmanifest"> -->
+    <link rel="shortcut icon" type="image/x-icon" href="assets/frontend/img/favicon.png">
+    <!-- Place favicon.ico in the root directory -->
+
+    <!-- CSS here -->
+    <link rel="stylesheet" href="assets/frontend/css/bootstrap.min.css">
+    <link rel="stylesheet" href="assets/frontend/css/owl.carousel.min.css">
+    <link rel="stylesheet" href="assets/frontend/css/slicknav.css">
+    <link rel="stylesheet" href="assets/frontend/css/animate.min.css">
+    <link rel="stylesheet" href="assets/frontend/css/magnific-popup.css">
+    <link rel="stylesheet" href="assets/frontend/css/fontawesome-all.min.css">
+    <link rel="stylesheet" href="assets/frontend/css/themify-icons.css">
+    <link rel="stylesheet" href="assets/frontend/css/themify-icons.css">
+    <link rel="stylesheet" href="assets/frontend/css/slick.css">
+    <link rel="stylesheet" href="assets/frontend/css/nice-select.css">
+    <link rel="stylesheet" href="assets/frontend/css/style.css">
+    <link rel="stylesheet" href="assets/frontend/css/responsive.css">
+</head>
+
+<body>
+
+    <header>
+        <!-- Header Start -->
+        <div class="header-area">
+            <div class="main-header ">
+                <div class="header-top top-bg d-none d-lg-block">
+                    <div class="container-fluid">
+                        <div class="row d-flex justify-content-between align-items-center">
+                            <div class="">
+                                <h2 style="color: white;">Blog Section</h2>
+                            </div>
+                            <div class="header-right-btn f-right d-none d-lg-block">
+                                <a href="addblogpage" class="btn header-btn">Add New Blog</a>
+                                <a href="logout" class="btn header-btn">logout</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- Header End -->
+    </header>
+
+    <!-- slider Area Start-->
+    <div class="slider-area ">
+        <!-- Mobile Menu -->
+        <div class="single-slider slider-height2 d-flex align-items-center"
+            data-background="assets/frontend/img/hero/Industries_hero.jpg">
+            <div class="container">
+                <div class="row">
+                    <div class="col-xl-12">
+                        <div class="hero-cap text-center">
+                            <h2>Our Blog</h2>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <section class="blog_area section-padding">
+        <div class="container">
+            <div class="row">
+                <div class="blog_left_sidebar d-flex flex-wrap">
+                    <% users.map((val,index)=>{
+                        const{title,desc,image }=val %>
+                        <div class="col-lg-4 mb-5 mb-lg-0">
+
+                            <article class="blog_item">
+                                <div class="blog_item_img">
+                                    <img class="card-img rounded-0" src="<%= image%>" alt="">
+
+                                </div>
+
+                                <div class="blog_details">
+                                    <a class="d-inline-block" href="">
+                                        <h2>
+                                            <%= val.title%>
+                                        </h2>
+                                    </a>
+                                    <p>
+                                        <%= val.desc%>
+                                    </p>
+                                    <div class="" style="display: flex; justify-content: space-between;">
+                                        <a href="/delete?id=<%= val.id%>">Delete</a>
+                                        <a href="/edit?id=<%= val.id%>">Edit</a>
+                                    </div>
+
+                                </div>
+                            </article>
+
+
+
+                        </div>
+                        <% })%>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+
+    <!-- JS here -->
+
+    <!-- All JS Custom Plugins Link Here here -->
+    <script src="./assets/frontend/js/vendor/modernizr-3.5.0.min.js"></script>
+
+    <!-- Jquery, Popper, Bootstrap -->
+    <script src="./assets/frontend/js/vendor/jquery-1.12.4.min.js"></script>
+    <script src="./assets/frontend/js/popper.min.js"></script>
+    <script src="./assets/frontend/js/bootstrap.min.js"></script>
+    <!-- Jquery Mobile Menu -->
+    <script src="./assets/frontend/js/jquery.slicknav.min.js"></script>
+
+    <!-- Jquery Slick , Owl-Carousel Plugins -->
+    <script src="./assets/frontend/js/owl.carousel.min.js"></script>
+    <script src="./assets/frontend/js/slick.min.js"></script>
+
+    <!-- One Page, Animated-HeadLin -->
+    <script src="./assets/frontend/js/wow.min.js"></script>
+    <script src="./assets/frontend/js/animated.headline.js"></script>
+
+    <!-- Scrollup, nice-select, sticky -->
+    <script src="./assets/frontend/js/jquery.scrollUp.min.js"></script>
+    <script src="./assets/frontend/js/jquery.nice-select.min.js"></script>
+    <script src="./assets/frontend/js/jquery.sticky.js"></script>
+    <script src="./assets/frontend/js/jquery.magnific-popup.js"></script>
+
+    <!-- contact js -->
+    <script src="./assets/frontend/js/contact.js"></script>
+    <script src="./assets/frontend/js/jquery.form.js"></script>
+    <script src="./assets/frontend/js/jquery.validate.min.js"></script>
+    <script src="./assets/frontend/js/mail-script.js"></script>
+    <script src="./assets/frontend/js/jquery.ajaxchimp.min.js"></script>
+
+    <!-- Jquery Plugins, main Jquery -->
+    <script src="./assets/frontend/js/plugins.js"></script>
+    <script src="./assets/frontend/js/main.js"></script>
+
+</body>
+
+</html>
