@@ -1,24 +1,19 @@
 const usermodels = require('../models/usermodels')
-const blogmodels=require('../models/view')
-const fs=require('fs')
+const blogmodels = require('../models/view')
+const fs = require('fs')
 const resiterpage = (req, res) => {
     return res.render('resiter')
-
 }
 const loginpage = (req, res) => {
+    if(req.cookies['auth']){
+        return res.redirect('/viewblog');
+    }
     return res.render('login')
 }
-// const dashbord = async (req, res) => {
 
-//     try {
-        
-//     } catch (error) {
-        
-//     }
-//     return res.render('dash')
-// }
 const Resiterusers = async (req, res) => {
     try {
+        
         const { name, email, password } = req.body;
 
         console.log(req.body);
@@ -40,13 +35,14 @@ const loginuseres = async (req, res) => {
         const { email, password } = req.body;
 
         const user = await usermodels.findOne({ email: email })
-console.log(user);
+        console.log(user);
 
         if (!user || user.password !== password) {
 
             console.log(`Email and Password not valid`);
             return res.redirect('/')
         }
+        res.cookie('auth',user);
 
         return res.redirect('/viewblog')
     } catch (error) {
@@ -56,119 +52,122 @@ console.log(user);
     }
 }
 
-const addblogpage=async(req,res)=>{
+const addblogpage = async (req, res) => {
 
-    
+
     return res.render('addblog',)
 
 
 
 }
 
-const addblogusers= async (req, res)=>{
+const addblogusers = async (req, res) => {
 
-try {
-    const {title,desc}=req.body    
-await blogmodels.create({
-    title,
-    desc,
-    image:req.file.path
-})
-    return res.redirect('/viewblog')
-
-} catch (error) {
-    console.log(error);
-    return false
-    
-}
-}
-
-
-const viewblog= async (req, res)=>{
-try {
-    
-
-    let users=await blogmodels.find({})
-    return res.render('viewblog',{
-        users
-    })
-    
-} catch (error) {
-    console.log(error);
-    return false
-    
-}
-
-    
-}
-
-const deleterecord= async (req, res)=>{
-   
     try {
-        
+        const { title, desc } = req.body
+        await blogmodels.create({
+            title,
+            desc,
+            image: req.file.path
+        })
+        return res.redirect('/viewblog')
 
-        let id =req.query.id
+    } catch (error) {
+        console.log(error);
+        return false
 
-let single=await blogmodels.findById(id)
-fs.unlinkSync(single.image)
+    }
+}
+
+
+const viewblog = async (req, res) => {
+    try {
+        if(req.cookies['auth']){
+
+            
+            let users = await blogmodels.find({})
+            return res.render('viewblog', {
+                users
+            })
+        }
+        return res.redirect('/')
+
+    } catch (error) {
+        console.log(error);
+        return false
+
+    }
+
+
+}
+
+const deleterecord = async (req, res) => {
+
+    try {
+
+
+        let id = req.query.id
+
+        let single = await blogmodels.findById(id)
+        fs.unlinkSync(single.image)
 
         await blogmodels.findByIdAndDelete(id)
         return res.redirect('/viewblog')
     } catch (error) {
         console.log(error);
-        
+
     }
 }
 
-const editrecord= async (req, res)=>{
-   
+const editrecord = async (req, res) => {
+
     try {
         let id = req.query.id;
         let single = await blogmodels.findById(id);
-        return res.render('editblog',{
+        return res.render('editblog', {
             single
         })
 
     } catch (error) {
         console.log(error);
-        
+
     }
 }
 
-const upblog= async (req, res)=>{
-  
+const upblog = async (req, res) => {
+
     try {
-        
-        const {editid,title,desc}=req.body 
+
+        const { editid, title, desc } = req.body
 
 
         if (req.file) {
-            let single=await blogmodels.findById(editid)
-            fs.unlinkSync(single.image) 
-    
-            await blogmodels.findByIdAndUpdate(editid,{
-                title,desc,
-                image:req.file.path
+            let single = await blogmodels.findById(editid)
+            fs.unlinkSync(single.image)
+
+            await blogmodels.findByIdAndUpdate(editid, {
+                title, desc,
+                image: req.file.path
             })
-              return res.redirect('/viewblog')
-    
-            
+            return res.redirect('/viewblog')
+
+
         } else {
-            let single=await blogmodels.findById(editid)
-    
-            await blogmodels.findByIdAndUpdate(editid,{
-                title,desc,
-                image:single.image
+            let single = await blogmodels.findById(editid)
+
+            await blogmodels.findByIdAndUpdate(editid, {
+                title, desc,
+                image: single.image
             })
-              return res.redirect('/viewblog')
-    
+            return res.redirect('/viewblog')
+
         }
-       
+
     } catch (error) {
         console.log(Error);
-        
+
     }
-    
+
 }
 
 
@@ -177,6 +176,6 @@ module.exports = {
     loginpage,
     Resiterusers,
     loginuseres,
-    addblogpage,addblogusers,viewblog,deleterecord,editrecord,upblog
+    addblogpage, addblogusers, viewblog, deleterecord, editrecord, upblog
 
 }

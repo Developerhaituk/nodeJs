@@ -21,7 +21,7 @@ const storage = multer.diskStorage({
   const upload = multer({ storage: storage }).single('image')
 
 routes.get('/', loginpage);
-routes.get('/register',resiterpage); 
+routes.get('/register',passport.checkUser,resiterpage); 
 routes.post('/insert',Resiterusers)
 routes.post('/login',passport.authenticate('local', { failureRedirect: '/' }),loginuseres)
 routes.get('/addblogpage',passport.checkUser,addblogpage); 
