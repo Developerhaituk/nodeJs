@@ -46,11 +46,7 @@ const addblogpage = async (req, res) => {
 const addblogusers = async (req, res) => {
     try {
         const { title, desc } = req.body
-        await blogmodels.create({
-            title,
-            desc,
-            image: req.file.path
-        })
+        await blogmodels.create({title,desc,image: req.file.path})
         return res.redirect('/viewblog')
     } catch (error) {
         console.log(error);

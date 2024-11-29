@@ -24,7 +24,7 @@ routes.get('/', loginpage);
 routes.get('/register',resiterpage); 
 routes.post('/insert',Resiterusers)
 routes.post('/login',passport.authenticate('local', { failureRedirect: '/' }),loginuseres)
-routes.get('/addblogpage',addblogpage); 
+routes.get('/addblogpage',passport.checkUser,addblogpage); 
 routes.post('/addblog',upload,addblogusers)
 routes.get('/viewblog',passport.checkUser,viewblog); 
 routes.get('/delete',deleterecord); 
