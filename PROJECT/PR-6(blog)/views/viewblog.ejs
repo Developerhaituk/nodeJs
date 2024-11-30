@@ -39,8 +39,13 @@
                             <div class="">
                                 <h2 style="color: white;">Blog Section</h2>
                             </div>
-                            <div class="header-right-btn f-right d-none d-lg-block">
-                                <a href="addblogpage" class="btn header-btn">Add New Blog</a>
+                            <div>
+                                <div class="header-right-btn f-right d-none d-lg-block">
+                                    <a href="/logout" class="btn header-btn">Logout</a>
+                                </div>
+                                <div class="header-right-btn f-right d-none d-lg-block mr-3">
+                                    <a href="/addblogpage" class="btn header-btn">Add New Blog</a>
+                                </div>
                             </div>
                         </div>
                     </div>
@@ -139,7 +144,7 @@
                             <article class="blog_item">
                                 <div class="blog_item_img">
                                     <img class="card-img rounded-0" src="<%= image%>" alt="">
-                                    
+
                                 </div>
 
                                 <div class="blog_details">
@@ -152,7 +157,7 @@
                                         <%= val.desc%>
                                     </p>
                                     <div class="" style="display: flex; justify-content: space-between;">
-                                        <a href="/delete?id=<%= val.id%>">Delete</a> 
+                                        <a href="/delete?id=<%= val.id%>">Delete</a>
                                         <a href="/edit?id=<%= val.id%>">Edit</a>
                                     </div>
 

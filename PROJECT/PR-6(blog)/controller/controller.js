@@ -13,20 +13,16 @@ const loginpage = (req, res) => {
 
 const Resiterusers = async (req, res) => {
     try {
-        
         const { name, email, password } = req.body;
-
-        console.log(req.body);
         await usermodels.create({
             name: name, email: email, password: password
-        })
+        }).save();
         return res.redirect('/')
 
     } catch (error) {
         console.log(err);
         return false
     }
-
 }
 
 const loginuseres = async (req, res) => {
@@ -53,12 +49,7 @@ const loginuseres = async (req, res) => {
 }
 
 const addblogpage = async (req, res) => {
-
-
     return res.render('addblog',)
-
-
-
 }
 
 const addblogusers = async (req, res) => {
@@ -82,9 +73,7 @@ const addblogusers = async (req, res) => {
 
 const viewblog = async (req, res) => {
     try {
-        if(req.cookies['auth']){
-
-            
+        if(req.cookies['auth']){            
             let users = await blogmodels.find({})
             return res.render('viewblog', {
                 users
@@ -95,17 +84,12 @@ const viewblog = async (req, res) => {
     } catch (error) {
         console.log(error);
         return false
-
     }
-
-
 }
 
 const deleterecord = async (req, res) => {
 
     try {
-
-
         let id = req.query.id
 
         let single = await blogmodels.findById(id)
@@ -115,7 +99,6 @@ const deleterecord = async (req, res) => {
         return res.redirect('/viewblog')
     } catch (error) {
         console.log(error);
-
     }
 }
 
@@ -130,17 +113,13 @@ const editrecord = async (req, res) => {
 
     } catch (error) {
         console.log(error);
-
     }
 }
 
 const upblog = async (req, res) => {
 
     try {
-
         const { editid, title, desc } = req.body
-
-
         if (req.file) {
             let single = await blogmodels.findById(editid)
             fs.unlinkSync(single.image)
@@ -150,8 +129,6 @@ const upblog = async (req, res) => {
                 image: req.file.path
             })
             return res.redirect('/viewblog')
-
-
         } else {
             let single = await blogmodels.findById(editid)
 
@@ -160,22 +137,17 @@ const upblog = async (req, res) => {
                 image: single.image
             })
             return res.redirect('/viewblog')
-
         }
-
     } catch (error) {
         console.log(Error);
-
     }
-
 }
 
+const logout=(req, res)=>{
+    return res.clearCookie('auth').redirect('/');
+}
 
 module.exports = {
-    resiterpage,
-    loginpage,
-    Resiterusers,
-    loginuseres,
-    addblogpage, addblogusers, viewblog, deleterecord, editrecord, upblog
-
+    resiterpage,loginpage,Resiterusers,loginuseres,
+    addblogpage, addblogusers, viewblog, deleterecord, editrecord, upblog,logout
 }
