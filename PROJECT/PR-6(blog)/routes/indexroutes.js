@@ -31,5 +31,4 @@ routes.get('/edit',editrecord);
 routes.post('/up',upload,upblog);
 routes.get('/logout',logout); 
 
-
 module.exports = routes;

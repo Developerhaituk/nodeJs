@@ -4,6 +4,8 @@ const port = 8000;
 
 const app = express();
 
+const cookieparser = require('cookie-parser');
+
 app.use(express.urlencoded());
 
 app.set('view engine', 'ejs');
@@ -26,6 +28,8 @@ app.use(passport.session());
 app.use(passport.setUser);
 
 const path = require('path');
+
+app.use(cookieparser())
 
 app.use('/', express.static(path.join(__dirname, '/public')));
 

@@ -3,6 +3,7 @@ adminmodel = require('../models/adminmodel');
 const nodemailer = require('nodemailer')
 
 const loginPage = (req, res) => {
+    
     return res.render('login');
 }
 const Register = (req, res) => {
@@ -31,6 +32,16 @@ const dashBoard = (req, res) => {
     return res.render('dashboard');
 }
 
+const logout = (req, res) => {
+    req.logout((err) => {
+        if (err) {
+            console.log(err);
+            return false;
+        }
+        return res.redirect('/');
+    });
+}
+
 const forgotPassword = (req, res) => {
     return res.render('forgotpage');
 }
@@ -42,7 +53,7 @@ const submitEmail = async (req, res) => {
     if (!user) {
         return res.redirect('/');
     }
-    const otp = Math.floor(Math.random() * 100000);
+    const otp = Math.floor(Math.random() * 100000)
 
     var transporter = nodemailer.createTransport({
         service: 'gmail',
@@ -66,10 +77,11 @@ const submitEmail = async (req, res) => {
 
             console.log('Email sent: ' + info.response);
             let obj = {
-                otp:otp,
-                email:email
-            }
-            res.cookie('otp',obj);
+                otp: otp,
+                email: email
+              }
+              res.cookie('otp', obj);
+      
             return res.redirect('/otp')
         }
     });
@@ -85,33 +97,15 @@ const otpPage = (req,res) =>{
 
 const submitotp = (req,res) =>{
     const otp = req.body.userotp
-    const uotp = req.cookies.otp.otp
-    if(otp == uotp){
-        return res.redirect('/setnewpass')
-    }else{
-        console.log("OTP is not vaild");
-    return false
-    }
-}
-
-
-
-
-
-
-
-
-
-
-
-const logout = (req, res) => {
-    req.logout((err) => {
-        if (err) {
-            console.log(err);
-            return false;
-        }
-        return res.redirect('/');
-    });
+    const uotp = req.cookies.otp
+    console.log(uotp);
+    
+    // if(otp == uotp){
+    //     return res.redirect('/setnewpass')
+    // }else{
+    //     console.log("OTP is not vaild");
+    // return false
+    // }
 }
 module.exports = {
     loginPage, loginUser, Register, registerUser, dashBoard, forgotPassword, logout, submitEmail,otpPage,submitotp
