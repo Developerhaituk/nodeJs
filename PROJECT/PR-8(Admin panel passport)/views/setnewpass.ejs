@@ -24,10 +24,14 @@
                                 </a>
                                 <p class="text-center">Your Social Campaigns</p>
 
-                                <form method="post" action="/newpass">
+                                <form method="post" action="/postnewpass">
                                     <div class="mb-3">
                                         <label for="exampleInputEmail1" class="form-label">New Password</label>
-                                        <input name="newpass" type="email" class="form-control">
+                                        <input name="newpass" type="text" class="form-control">
+                                    </div>
+                                    <div class="mb-3">
+                                        <label for="exampleInputEmail1" class="form-label">Confirm Password</label>
+                                        <input name="confirmpass" type="password" class="form-control">
                                     </div>
 
                                     <button type="submit"

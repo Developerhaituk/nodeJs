@@ -97,16 +97,67 @@ const otpPage = (req,res) =>{
 
 const submitotp = (req,res) =>{
     const otp = req.body.userotp
-    const uotp = req.cookies.otp
-    console.log(uotp);
+    console.log(otp);
     
-    // if(otp == uotp){
-    //     return res.redirect('/setnewpass')
-    // }else{
-    //     console.log("OTP is not vaild");
-    // return false
-    // }
+    const uotp = req.cookies.otp.otp
+    console.log(uotp);
+
+    
+    if(otp == uotp){
+        return res.redirect('/setnewpass')
+    }else{
+        console.log("OTP is not vaild");
+    return false
+    }
+}
+
+const setnewPass = (req,res) =>{
+    return res.render('setnewpass')
+}
+
+const newPass = async(req,res) =>{
+    try {
+        const {newpass,confirmpass} = req.body;
+        if(newpass == confirmpass){
+            const useremail = req.cookies.otp.email
+            await adminmodel.findOneAndUpdate({ email: useremail }, {
+                password: newpass
+              })
+              return res.redirect('/')
+        }else{
+            console.log('newpassword and confirm password does not match');
+            return res.redirect('/setnewpass')
+        }
+        
+    } catch (err) {
+        console.log(err);
+        return false;
+    }
+}
+
+const viewprofilePage = (req,res) =>{
+    return res.render('viewprofile')
+}
+
+const editProfilePage = (req,res) =>{
+    return res.render('editprofile')
+}
+
+const updateProfile = async(req,res) =>{
+    try {
+        const {name,editpassword,editemail} =req.body
+        await adminmodel.findOneAndUpdate({email:editemail},{
+            name:name,
+            password : editpassword,
+            
+        })
+        return res.redirect('/viewprofile')
+    } catch (err) {
+        console.log(err);
+        return false
+    }
 }
 module.exports = {
-    loginPage, loginUser, Register, registerUser, dashBoard, forgotPassword, logout, submitEmail,otpPage,submitotp
+    loginPage, loginUser, Register, registerUser, dashBoard, forgotPassword, logout, submitEmail,newPass,otpPage,submitotp,setnewPass,viewprofilePage,editProfilePage,
+    updateProfile
 }

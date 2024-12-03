@@ -6,9 +6,8 @@ const app = express();
 
 const cookieparser = require('cookie-parser');
 
-app.use(express.urlencoded());
 
-app.set('view engine', 'ejs');
+const db = require('./config/db');
 
 const session = require('express-session');
 const passport = require('passport');
@@ -31,14 +30,16 @@ const path = require('path');
 
 app.use(cookieparser())
 
+app.use(express.urlencoded());
+
 app.use('/', express.static(path.join(__dirname, '/public')));
 
 app.use('/',require('./routes/indexRoutes'));
 
-const db = require('./config/db');
 
 
 
+app.set('view engine', 'ejs');
 app.listen(port,(err)=>{
     if (err) {
         console.log(err);

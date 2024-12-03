@@ -19989,7 +19989,7 @@ fieldset:disabled .btn {
     transition: all 0.3s ease-in-out
 }
 
-.:hover:before {
+.hover:before {
     content: "";
     position: absolute;
     left: 50%;
