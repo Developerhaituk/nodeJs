@@ -119,7 +119,7 @@ const newPass = async(req,res) =>{
     try {
         const {newpass,confirmpass} = req.body;
         if(newpass == confirmpass){
-            const useremail = req.cookies.otp.email
+            const useremail = req.cookies.otp?.email
             await adminmodel.findOneAndUpdate({ email: useremail }, {
                 password: newpass
               })
@@ -127,6 +127,32 @@ const newPass = async(req,res) =>{
         }else{
             console.log('newpassword and confirm password does not match');
             return res.redirect('/setnewpass')
+        }
+        
+    } catch (err) {
+        console.log(err);
+        return false;
+    }
+}
+
+// change password
+
+const changepasspage = (req,res) =>{
+    return res.render('changepass')
+}
+
+const changepass = async(req,res) =>{
+    try {
+        const {newpass,confirmpass} = req.body;
+        const email = req.body.email
+        if(newpass == confirmpass){
+            await adminmodel.findOneAndUpdate({ email:email }, {
+                password: newpass
+              })
+              return res.redirect('/')
+        }else{
+            console.log('newpassword and confirm password does not match');
+            return res.redirect('/changepass')
         }
         
     } catch (err) {
@@ -158,6 +184,6 @@ const updateProfile = async(req,res) =>{
     }
 }
 module.exports = {
-    loginPage, loginUser, Register, registerUser, dashBoard, forgotPassword, logout, submitEmail,newPass,otpPage,submitotp,setnewPass,viewprofilePage,editProfilePage,
+    loginPage, loginUser, Register, registerUser, dashBoard, forgotPassword, logout, submitEmail,newPass,otpPage,submitotp,setnewPass,changepasspage,changepass,viewprofilePage,editProfilePage,
     updateProfile
 }

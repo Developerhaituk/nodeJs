@@ -4,7 +4,7 @@ const routes = express.Router();
 
 const passport=require("passport")
 
-const { loginPage,loginUser,Register,registerUser,dashBoard, logout, forgotPassword,submitEmail, otpPage, submitotp, setnewPass,newPass, viewprofilePage, editProfilePage, updateProfile } = require('../controllers/admincontroller');
+const { loginPage,loginUser,Register,registerUser,dashBoard, logout, forgotPassword,submitEmail, otpPage, submitotp, setnewPass,newPass,changepasspage,changepass, viewprofilePage, editProfilePage, updateProfile } = require('../controllers/admincontroller');
 
 routes.get('/',loginPage);
 routes.post('/loginuser',passport.authenticate('local', { failureRedirect: '/' }),loginUser);
@@ -18,6 +18,9 @@ routes.get('/otp',otpPage)
 routes.post('/submitotp',submitotp)
 routes.get('/setnewpass',setnewPass)
 routes.post('/postnewpass',newPass)
+// changepass
+routes.get('/changepasspage',changepasspage)
+routes.post('/changepass',changepass)
 routes.get('/viewprofile',viewprofilePage)
 routes.get('/editprofile',editProfilePage)
 routes.post('/updateprofile',updateProfile)
