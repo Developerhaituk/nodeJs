@@ -1,0 +1,55 @@
+<%- include('../header') %>
+
+<div class="body-wrapper-inner">
+    <div class="container-fluid">
+      <div class="card">
+        <div class="card-body">
+          <h5 class="card-title fw-semibold mb-4">Add ExSubCategory</h5>
+          <div class="card">
+            <div class="card-body">
+              <form method="post" action="/exsubcategory/addexsubcategoryfield">
+                <div class="mb-3">
+                  <label for="exampleInputEmail1" class="form-label">Category Field</label>
+                  <select name="category" onchange="exSubCategoryRecord()" id="category" class="form-select">
+                    <option value="">-----select-category-option------</option>
+                    <% category.map ((category)=>{ %>
+                        <option class="text-dark" value="<%= category._id %>">
+                            <%= category.name %>
+                        </option>
+                    <%  }) %>
+                  </select>
+                </div>
+                <div class="mb-3">
+                  <label for="exampleInputEmail1" class="form-label">SubCategory Field</label>
+                  <select name="subcategory" id="subcategory" class="form-select">
+                    <option value="">-----select-category-option------</option>
+                    <% subcategory.map ((subcategory)=>{ %>
+                        <option class="text-dark" value="<%= subcategory._id %>">
+                            <%= subcategory.subcategory %>
+                        </option>
+                    <%  }) %>
+                  </select>
+                </div>
+                <div class="mb-3">
+                  <label for="exampleInputEma onchange="exSubCategoryRecord()"il1" class="form-label">ExSubCategory Field</label>
+                  <input type="text" name="exsubcategory" class="form-control text-capitalize" id="exampleInputEmail1">
+                </div>
+                <button type="submit" class="btn btn-primary">Submit</button>
+              </form>
+            </div>
+          </div>
+      
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+
+  <script type="text/javascript">
+    const exSubCategoryRecord = () =>{
+        let category = document.getElementById('category').value;
+    }
+  </script>
+
+<%- include('../footer') %>

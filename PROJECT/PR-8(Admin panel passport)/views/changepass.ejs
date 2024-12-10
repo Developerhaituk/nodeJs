@@ -24,14 +24,13 @@
                                 </a>
                                 <p class="text-center">Your Social Campaigns</p>
 
-                                <form method="post" action="/postnewpass">
+                                <form method="post" action="/changenewpass">
                                     <div class="mb-3">
-                                        <input type="email" name="email" value="<%= locals.users.email %>">
-                                        <label for="exampleInputEmail1" class="form-label">New Password</label>
-                                        <input name="newpass" type="text" class="form-control">
+                                        <label for="exampleInputEmail1" class="form-label">Old Password</label>
+                                        <input name="oldpass" type="text" class="form-control">
                                     </div>
                                     <div class="mb-3">
-                                        <label for="exampleInputEmail1" class="form-label">Confirm Password</label>
+                                        <label for="exampleInputEmail1" class="form-label">New Password</label>
                                         <input name="confirmpass" type="password" class="form-control">
                                     </div>
 

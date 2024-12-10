@@ -20,7 +20,7 @@ routes.get('/setnewpass',setnewPass)
 routes.post('/postnewpass',newPass)
 // changepass
 routes.get('/changepasspage',changepasspage)
-routes.post('/changepass',changepass)
+routes.post('/changenewpass',changepass)
 routes.get('/viewprofile',viewprofilePage)
 routes.get('/editprofile',editProfilePage)
 routes.post('/updateprofile',updateProfile)

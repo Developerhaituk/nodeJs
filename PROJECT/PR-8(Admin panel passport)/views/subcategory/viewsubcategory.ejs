@@ -8,36 +8,40 @@
       <tr>
         <th scope="col">#</th>
         <th scope="col">Category</th>
-        <th scope="col">Action</th>
+        <th scope="col">SubCategory</th>
+        <th scope="col">actions</th>
         <th scope="col">Current Status</th>
       </tr>
     </thead>
     <tbody>
-      <% single.map((cat,i)=> { %>
+      <% subcategory.map((subcat,i)=> { %>
 
         <tr>
             <td>
                 <%= ++i %>
             </td>
             <td>
-                <%= cat.name %>
+                <%= subcat.categoryid.name%>
             </td>
             <td>
-                <a href="/category/deleteCategory?id=<%=cat.id%>"
+                <%= subcat.subcategory%>
+            </td>
+            <td>
+                <a href="/subcategory/deletesubcategory?id=<%=subcat.id%>"
                     class="btn btn-danger py-2"
                     style="font-size: 16px !important;">
                     <i class="fa-solid fa-trash-can"></i>
                 </a>
-                <a href="/category/editCategory?id=<%=cat.id%>"
+                <a href="/subcategory/editsubcategory?id=<%=subcat.id%>"
                     class="btn btn-primary py-1 ms-2 "
                     style="font-size: 20px !important;">
                     <i class="fa-solid fa-pen"></i>
                 </a>
             </td>
             <td>
-                <a href="/category/changeStatus?id=<%= cat.id %>&status=<%= cat.status %>" 
-                    class="<% if(cat.status == `active`) { %> btn btn-info py-2 px-3 <% } else { %> btn btn-warning py-2 px-3 <% } %>">
-                    <%= cat.status %>
+                <a href="/subcategory/changeStatus?id=<%= subcat.id %>&status=<%= subcat.status %>" 
+                    class="<% if(subcat.status == `active`) { %> btn btn-info py-2 px-3 <% } else { %> btn btn-warning py-2 px-3 <% } %>">
+                    <%= subcat.status %>
                 </a>
             </td>
         </tr>

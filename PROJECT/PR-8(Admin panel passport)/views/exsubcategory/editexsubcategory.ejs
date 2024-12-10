@@ -1,0 +1,54 @@
+<%- include('../header') %>
+
+<div class="body-wrapper-inner">
+    <div class="container-fluid">
+      <div class="card">
+        <div class="card-body">
+          <h5 class="card-title fw-semibold mb-4">Add ExSubCategory</h5>
+          <div class="card">
+            <div class="card-body">
+              <form method="post" action="/exsubcategory/updateexsubcategory">
+                <div class="mb-3">
+                  <input type="hidden" value="<%= exsubcategory.id %>" name="editid">
+                  <label for="exampleInputEmail1" class="form-label">Category Field</label>
+                  <select name="category" class="form-select">
+                    <option value="">-----select-category-option------</option>
+                    <% category.map ((category)=>{ %>
+                      <% if (category.name==exsubcategory.categoryid.name) { %>
+                        <option selected value="<%= category._id %>">
+                            <%= category.name %>
+                        </option>
+                    <% } else { %>
+                            <option value="<%= category._id %>">
+                                <%= category.name %>
+                            </option>
+                    <% } %>
+                    <%  }) %>
+                  </select>
+                </div>
+                <div class="mb-3">
+                  <label for="exampleInputEmail1" class="form-label">SubCategory Field</label>
+                  <select name="subcategory" class="form-select">
+                    <option value="">-----select-subcategory-option------</option>
+                    <% subcategory.map((subcategory)=>{ %>
+                        <option class="text-dark" value="<%= subcategory._id %>">
+                            <%= subcategory.subcategory %>
+                        </option>
+                    <%  }) %>
+                  </select>
+                </div>
+                <div class="mb-3">
+                  <label for="exampleInputEmail1" class="form-label">ExSubCategory Field</label>
+                  <input type="text" name="exsubcategory" value="<%= exsubcategory.exsubcategory %>" class="form-control text-capitalize" id="exampleInputEmail1">
+                </div>
+                <button type="submit" class="btn btn-primary">Submit</button>
+              </form>
+            </div>
+          </div>
+      
+        </div>
+      </div>
+    </div>
+  </div>
+
+<%- include('../footer') %>

@@ -4,13 +4,14 @@
     <div class="container-fluid">
       <div class="card">
         <div class="card-body">
-          <h5 class="card-title fw-semibold mb-4">Add Category</h5>
+          <h5 class="card-title fw-semibold mb-4">Forms</h5>
           <div class="card">
             <div class="card-body">
-              <form method="post" action="/category/addcategoryfield">
+              <form method="post" action="/category/updatecategory">
                 <div class="mb-3">
+                    <input type="hidden" name="editid" value="<%=single.id %>">
                   <label for="exampleInputEmail1" class="form-label">Category Field</label>
-                  <input type="text" name="category" class="form-control text-capitalize" id="exampleInputEmail1">
+                  <input type="text" name="name" class="form-control" id="exampleInputEmail1" value="<%=single.name %>">
                 </div>
                 <button type="submit" class="btn btn-primary">Submit</button>
               </form>

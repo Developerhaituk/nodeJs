@@ -1,0 +1,43 @@
+<%- include('../header') %>
+
+<div class="body-wrapper-inner">
+    <div class="container-fluid">
+      <div class="card">
+        <div class="card-body">
+          <h5 class="card-title fw-semibold mb-4">Add SubCategory</h5>
+          <div class="card">
+            <div class="card-body">
+              <form method="post" action="/subcategory/updatesubcategory">
+                <div class="mb-3">
+                    <input type="hidden" name="editid" value="<%= single._id %>" />
+                  <label for="exampleInputEmail1" class="form-label">Category Field</label>
+                  <select name="category" class="form-select">
+                    <option value="">-----select-category-option------</option>
+                    <% category.map((cat)=> { %>
+                        <% if (cat.name==single.categoryid.name) { %>
+                            <option selected value="<%= cat._id %>">
+                                <%= cat.name %>
+                            </option>
+                        <% } else { %>
+                                <option value="<%= cat._id %>">
+                                    <%= cat.name %>
+                                </option>
+                        <% } %>
+                    <% }) %>
+                </select>
+                </div>
+                <div class="mb-3">
+                  <label for="exampleInputEmail1" class="form-label">SubCategory Field</label>
+                  <input type="text" name="subcategory" value="<%= single.subcategory %>" class="form-control text-capitalize">
+                </div>
+                <button type="submit" class="btn btn-primary">Submit</button>
+              </form>
+            </div>
+          </div>
+      
+        </div>
+      </div>
+    </div>
+  </div>
+
+<%- include('../footer') %>

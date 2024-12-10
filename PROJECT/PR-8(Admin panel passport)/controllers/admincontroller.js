@@ -143,11 +143,12 @@ const changepasspage = (req,res) =>{
 
 const changepass = async(req,res) =>{
     try {
-        const {newpass,confirmpass} = req.body;
-        const email = req.body.email
-        if(newpass == confirmpass){
-            await adminmodel.findOneAndUpdate({ email:email }, {
-                password: newpass
+        const {oldpass,confirmpass} = req.body;        
+        const email =  res.locals.users.email
+        
+        if(oldpass == res.locals.users.password){
+            await adminmodel.findOneAndUpdate({email:email}, {
+                password: confirmpass
               })
               return res.redirect('/')
         }else{

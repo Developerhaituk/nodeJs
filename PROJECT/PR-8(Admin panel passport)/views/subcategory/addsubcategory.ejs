@@ -1,0 +1,36 @@
+<%- include('../header') %>
+
+<div class="body-wrapper-inner">
+    <div class="container-fluid">
+      <div class="card">
+        <div class="card-body">
+          <h5 class="card-title fw-semibold mb-4">Add SubCategory</h5>
+          <div class="card">
+            <div class="card-body">
+              <form method="post" action="/subcategory/addsubcategoryfield">
+                <div class="mb-3">
+                  <label for="exampleInputEmail1" class="form-label">Category Field</label>
+                  <select name="category" class="form-select">
+                    <option value="">-----select-category-option------</option>
+                    <% category.map((category)=>{ %>
+                        <option class="text-dark" value="<%= category._id %>">
+                            <%= category.name %>
+                        </option>
+                        <% }) %>
+                </select>
+                </div>
+                <div class="mb-3">
+                  <label for="exampleInputEmail1" class="form-label">SubCategory Field</label>
+                  <input type="text" name="subcategory" class="form-control text-capitalize">
+                </div>
+                <button type="submit" class="btn btn-primary">Submit</button>
+              </form>
+            </div>
+          </div>
+      
+        </div>
+      </div>
+    </div>
+  </div>
+
+<%- include('../footer') %>
