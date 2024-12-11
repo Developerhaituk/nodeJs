@@ -2,7 +2,7 @@ const express = require('express');
 
 const passport = require("passport");
 
-const { addExSubCategory, addexsubcategorypage, viewExSubCategory, deleteExSubCategory, editExSubCategory, updateExSubCategory } = require('../controllers/Exsubcategorycontroller');
+const { addExSubCategory, addexsubcategorypage, viewExSubCategory, deleteExSubCategory, editExSubCategory, updateExSubCategory,ajaxCatFetch } = require('../controllers/Exsubcategorycontroller');
 
 const routes = express.Router();
 
@@ -13,5 +13,6 @@ routes.get('/viewexsubcategory',viewExSubCategory);
 routes.get('/deleteexsubcategory',deleteExSubCategory);
 routes.get('/editexsubcategory',editExSubCategory);
 routes.post('/updateexsubcategory', updateExSubCategory);
+routes.get('/ajaxcatfetch',ajaxCatFetch)
 
 module.exports = routes

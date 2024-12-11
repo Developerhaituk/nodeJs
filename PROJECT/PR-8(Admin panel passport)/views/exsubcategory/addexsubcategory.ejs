@@ -22,7 +22,7 @@
                 <div class="mb-3">
                   <label for="exampleInputEmail1" class="form-label">SubCategory Field</label>
                   <select name="subcategory" id="subcategory" class="form-select">
-                    <option value="">-----select-category-option------</option>
+                    <option value="">-----select-subcategory-option------</option>
                     <% subcategory.map ((subcategory)=>{ %>
                         <option class="text-dark" value="<%= subcategory._id %>">
                             <%= subcategory.subcategory %>
@@ -49,6 +49,22 @@
   <script type="text/javascript">
     const exSubCategoryRecord = () =>{
         let category = document.getElementById('category').value;
+        $.ajax({
+          type : 'GET',
+          url :`/exsubcategory/ajaxcatfetch?id=${category}`,
+          success:function(res){
+            let category = res.category;
+            
+            let tbl = "";
+            tbl +=`<option value="">-----select-subcategory-option------</option>`
+            category.map((subcat)=>{
+              tbl+=`
+                      <option value=${subcat._id}>${subcat.subcategory}</option>
+                  `
+            })
+            document.getElementById("subcategory").innerHTML=tbl;
+          }
+        })
     }
   </script>
 

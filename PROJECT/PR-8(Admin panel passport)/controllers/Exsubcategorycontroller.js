@@ -88,6 +88,22 @@ const updateExSubCategory = async (req, res) => {
     }
 };
 
+const ajaxCatFetch = async(req,res) =>{
+    try {
+        let id = req.query.id;
+        let category = await subcategoryModel.find({categoryid:id});
+        
+        return res.send({
+            success:true,
+            message:"record succesfully fetched",
+            category
+        })
+    } catch (err) {
+        console.log(err);
+        return false;
+    }
+}
+
 module.exports = {
-    addExSubCategory,addexsubcategorypage,viewExSubCategory,deleteExSubCategory,editExSubCategory,updateExSubCategory
+    addExSubCategory,addexsubcategorypage,viewExSubCategory,deleteExSubCategory,editExSubCategory,updateExSubCategory,ajaxCatFetch
 }

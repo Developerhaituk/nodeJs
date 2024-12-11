@@ -9,7 +9,7 @@ const cookieparser = require('cookie-parser');
 
 const db = require('./config/db');
 
-const session = require('express-session');
+const session = require('express-session');  
 const passport = require('passport');
 const passportLocal = require('./config/passportlocal');
 
