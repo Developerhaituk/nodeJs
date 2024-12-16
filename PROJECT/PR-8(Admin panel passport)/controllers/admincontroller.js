@@ -3,11 +3,17 @@ adminmodel = require('../models/adminmodel');
 const nodemailer = require('nodemailer')
 
 const loginPage = (req, res) => {
-    
+    if (res.locals.users) {
+        return res.redirect("/dashboard");
+      }
     return res.render('login');
 }
 const Register = (req, res) => {
-    return res.render('register');
+    if (req.isAuthenticated()) {
+        return res.redirect("/dashboard");
+      } else {
+        return res.render("register");
+      }
 }
 const loginUser = async (req, res) => {
     return res.redirect('/dashboard')
