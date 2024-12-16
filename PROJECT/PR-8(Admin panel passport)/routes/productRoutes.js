@@ -20,11 +20,11 @@ const storage = multer.diskStorage({
 const upload = multer({ storage: storage }).single('image')
 
 // Routes
-routes.get('/addproduct', addProduct);
-routes.get('/viewproduct', viewProductPage);
+routes.get('/addproduct',passport.checkUser, addProduct);
+routes.get('/viewproduct',passport.checkUser, viewProductPage);
 routes.post('/addproductdetail', upload,addProductDetailPage);
 routes.get('/deleteproduct',deleteProduct);
-routes.get('/editeproduct',editProduct);
+routes.get('/editeproduct',passport.checkUser,editProduct);
 routes.post('/updateproductdetail',upload,updateProductDetail)
 
 // routes.get('/ajaxcatfetch',ajaxcatfetch)

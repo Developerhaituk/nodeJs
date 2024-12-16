@@ -6,12 +6,12 @@ const { addSubCategory, viewSubCategory, addSubCategoryPage, deleteSubCategory, 
 
 const routes = express.Router();
 
-routes.use('/addsubcategory', addSubCategory);
+routes.get('/addsubcategory',passport.checkUser, addSubCategory);
 routes.post('/addsubcategoryfield', addSubCategoryPage);
-routes.use('/viewsubcategory', viewSubCategory);
+routes.use('/viewsubcategory',passport.checkUser, viewSubCategory);
 
 routes.get('/deletesubcategory', deleteSubCategory);
-routes.get('/editsubcategory', editSubCategory);
+routes.get('/editsubcategory',passport.checkUser, editSubCategory);
 routes.post('/updatesubcategory', updateSubCategory);
 
 routes.get('/changeStatus', changeStatus);

@@ -11,7 +11,7 @@ routes.post('/addcategoryfield',addcategoryfieldPage);
 routes.use('/viewcategory',passport.checkUser,viewCategoryPage);
 
 routes.get('/deletecategory',deleteCategory);
-routes.get('/editcategory',editCategory);
+routes.get('/editcategory',passport.checkUser,editCategory);
 routes.post('/updatecategory',updateCategory);
 routes.get('/changeStatus',changeStatus)
 

@@ -6,12 +6,12 @@ const { addExSubCategory, addexsubcategorypage, viewExSubCategory, deleteExSubCa
 
 const routes = express.Router();
 
-routes.use('/addexsubcategory', addExSubCategory);
+routes.get('/addexsubcategory',passport.checkUser, addExSubCategory);
 routes.post('/addexsubcategoryfield', addexsubcategorypage);
-routes.get('/viewexsubcategory',viewExSubCategory);
+routes.get('/viewexsubcategory',passport.checkUser,viewExSubCategory);
 
 routes.get('/deleteexsubcategory',deleteExSubCategory);
-routes.get('/editexsubcategory',editExSubCategory);
+routes.get('/editexsubcategory',passport.checkUser,editExSubCategory);
 routes.post('/updateexsubcategory', updateExSubCategory);
 routes.get('/ajaxcatfetch',ajaxCatFetch);
 
