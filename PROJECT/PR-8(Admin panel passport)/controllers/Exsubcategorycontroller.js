@@ -4,8 +4,8 @@ const exsubcategoryModel = require('../models/exsubcategorymodel');
 
 const addExSubCategory = async (req, res) => {
     try {
-        let category = await categoryModel.find({status:"active"})
-        let subcategory = await subcategoryModel.find({status:"active"})
+        let category = await categoryModel.find({status:"active"});
+        let subcategory = await subcategoryModel.find({status:"active"});
         return res.render('exsubcategory/addexsubcategory',{
             category,
             subcategory
@@ -102,8 +102,24 @@ const ajaxCatFetch = async(req,res) =>{
         console.log(err);
         return false;
     }
-}
+};
+
+const changeStatus = async (req, res) => {
+    try {
+      const status = req.query.status;
+      const id = req.query.id;
+      if (status == "active") {
+        await exsubcategoryModel.findByIdAndUpdate(id, { status: "deactive" });
+      } else {
+        await exsubcategoryModel.findByIdAndUpdate(id, { status: "active" });
+    }
+    return res.redirect("/exsubcategory/viewexsubcategory");
+    } catch (err) {
+      console.log(err);
+      return false;
+    }
+};
 
 module.exports = {
-    addExSubCategory,addexsubcategorypage,viewExSubCategory,deleteExSubCategory,editExSubCategory,updateExSubCategory,ajaxCatFetch
+    addExSubCategory,addexsubcategorypage,viewExSubCategory,deleteExSubCategory,editExSubCategory,updateExSubCategory,ajaxCatFetch,changeStatus
 }

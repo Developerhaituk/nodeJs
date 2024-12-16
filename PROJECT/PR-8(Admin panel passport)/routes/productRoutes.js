@@ -1,0 +1,32 @@
+const express = require('express');
+
+const passport = require("passport");
+
+const { addProduct, viewProductPage,addProductDetailPage,deleteProduct,editProduct,updateProductDetail } = require('../controllers/productcontroller');
+
+const routes = express.Router();
+
+const multer = require('multer');
+
+const storage = multer.diskStorage({
+    destination: function (req, file, cb) {
+        cb(null, 'uploads')
+    },
+    filename: function (req, file, cb) {
+        const uniqueSuffix = Date.now() + '-' + Math.round(Math.random() * 1E9)
+        cb(null, file.fieldname + '-' + uniqueSuffix)
+    }
+});
+const upload = multer({ storage: storage }).single('image')
+
+// Routes
+routes.get('/addproduct', addProduct);
+routes.get('/viewproduct', viewProductPage);
+routes.post('/addproductdetail', upload,addProductDetailPage);
+routes.get('/deleteproduct',deleteProduct);
+routes.get('/editeproduct',editProduct);
+routes.post('/updateproductdetail',upload,updateProductDetail)
+
+// routes.get('/ajaxcatfetch',ajaxcatfetch)
+
+module.exports = routes

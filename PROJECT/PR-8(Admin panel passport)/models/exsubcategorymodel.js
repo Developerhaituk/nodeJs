@@ -1,6 +1,6 @@
 const mongoose = require("mongoose");
 
-const userSchema = mongoose.Schema({
+const exsubcategorySchema = mongoose.Schema({
   categoryid: {
     type: mongoose.Schema.Types.ObjectId,
     ref: "category",
@@ -19,6 +19,6 @@ const userSchema = mongoose.Schema({
   },
 });
 
-const exsubcategory = mongoose.model("exsubcategory", userSchema);
+const exsubcategory = mongoose.model("exsubcategory", exsubcategorySchema);
 
 module.exports = exsubcategory;

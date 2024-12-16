@@ -31,7 +31,7 @@
                   <select name="subcategory" class="form-select">
                     <option value="">-----select-subcategory-option------</option>
                     <% subcategory.map((subcategory)=>{ %>
-                        <option class="text-dark" value="<%= subcategory._id %>">
+                        <option class="text-dark" value="<%= subcategory._id %>" <% if(subcategory.subcategory== exsubcategory.subcategoryid.subcategory){%> selected<% }%> >
                             <%= subcategory.subcategory %>
                         </option>
                     <%  }) %>

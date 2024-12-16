@@ -1,0 +1,142 @@
+<%- include('../header') %>
+
+  <div class="body-wrapper-inner">
+    <div class="container-fluid">
+      <div class="card">
+        <div class="card-body">
+          <h5 class="card-title fw-semibold mb-4">Add Product</h5>
+          <div class="card">
+            <div class="card-body">
+              <form method="post" action="/product/updateproductdetail" enctype="multipart/form-data">
+                <div class="mb-3">
+                    <input type="hidden" name="editid" value="<%= product.id %>">
+                  <label for="exampleInputEmail1" class="form-label">Category Field</label>
+                  <select name="category" onchange="exSubCategoryRecord()" id="category" class="form-select">
+                    <option value="">-----select-category-option------</option>
+                    <% category.map ((cat)=>{ %>
+                        <% if (cat.name==product.categoryid.name) { %>
+                            <option selected value="<%= cat._id %>">
+                                <%= cat.name %>
+                            </option>
+                        <% } else { %>
+                                <option value="<%= cat._id %>">
+                                    <%= cat.name %>
+                                </option>
+                        <% } %>
+                      <% }) %>
+                  </select>
+                </div>
+                <div class="mb-3">
+                  <label for="exampleInputEmail1" class="form-label">SubCategory Field</label>
+                  <select name="subcategory" onchange="subcatrecord()" id="subcategory" class="form-select">
+                    <option value="">-----select-subcategory-option------</option>
+                    <% subcategory.map ((subcat)=>{ %>
+                        <% if (subcat.subcategory==product.subcategoryid.subcategory) { %>
+                            <option selected value="<%= subcat._id %>">
+                                <%= subcat.subcategory %>
+                            </option>
+                        <% } else { %>
+                                <option value="<%= subcat._id %>">
+                                    <%= subcat.subcategory %>
+                                </option>
+                        <% } %>
+                      <% }) %>
+                  </select>
+                </div>
+                <div class="mb-3">
+                  <label for="exampleInputEmail1" class="form-label">ExSubCategory Field</label>
+                  <select name="exsubcategory" id="exsubcategory" class="form-select">
+                    <option value="">-----select-exsubcategory-option------</option>
+                    <% exsubcategory.map ((exsubcat)=>{ %>
+                        <% if (exsubcat.exsubcategory==product.exsubcategoryid.exsubcategory) { %>
+                            <option selected value="<%= exsubcat._id %>">
+                                <%= exsubcat.exsubcategory %>
+                            </option>
+                        <% } else { %>
+                                <option value="<%= exsubcat._id %>">
+                                    <%= exsubcat.exsubcategory %>
+                                </option>
+                        <% } %>
+                      <% }) %>
+                  </select>
+                </div>
+                <div class="mb-3">
+                  <label for="exampleInputEma onchange=" exSubCategoryRecord()"il1" class="form-label">Product
+                    Name</label>
+                  <input value="<%= product.name %>" type="text" name="name" class="form-control text-capitalize" id="exampleInputEmail1">
+                </div>
+                <div class="mb-3">
+                  <label for="exampleInputEma onchange=" exSubCategoryRecord()"il1" class="form-label">Product
+                    Price</label>
+                  <input value="<%= product.price %>" type="number" name="price" class="form-control text-capitalize" id="exampleInputEmail1">
+                </div>
+                <div class="mb-3">
+                  <label for="exampleInputEma onchange=" exSubCategoryRecord()"il1" class="form-label">Product
+                    Description</label>
+                  <input value="<%= product.description %>" type="text" name="description" class="form-control text-capitalize" id="exampleInputEmail1">
+                </div>
+                <div class="mb-3">
+                  <label for="exampleInputEma onchange=" exSubCategoryRecord()"il1" class="form-label">Product
+                    Image</label>
+                  <input type="file" name="image" class="form-control text-capitalize" id="exampleInputEmail1">
+                  <br>
+                  <img src="../<%= product.image %>" style="width: 100px;margin-top: 10px;" class="card-img rounded-0" alt="">
+                </div>
+                <button type="submit" class="btn btn-primary">Submit</button>
+              </form>
+            </div>
+          </div>
+
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+
+  <script type="text/javascript">
+    const exSubCategoryRecord = () => {
+      let category = document.getElementById('category').value;
+      $.ajax({
+        type: 'GET',
+        url: `/exsubcategory/ajaxcatfetch?id=${category}`,
+        success: function (res) {
+          let category = res.category;
+
+          let tbl = "";
+          tbl += `<option value="">-----select-subcategory-option------</option>`
+          category.map((subcat) => {
+            tbl += `
+                      <option value=${subcat._id}>${subcat.subcategory}</option>
+                  `
+          })
+          document.getElementById("subcategory").innerHTML = tbl;
+        }
+      })
+    }
+
+    const subcatrecord = () => {
+      let subcategory = document.getElementById('subcategory').value
+      $.ajax({
+        type: "GET",
+        url: `/product/ajaxcatfetch?id=${subcategory}`,
+        success: function (res) {
+          const subcategory = res.subcategory
+
+          let tbl = ""
+          tbl += `<option value="">-----select-exsubcategory-option--</option>`
+          subcategory.map((subcat) => {
+            tbl += `
+              <option value=${subcat._id} > ${subcat.exsubcategory}</option>
+
+             `
+          })
+          document.getElementById("exsubcategory").innerHTML = tbl
+
+        }
+
+      })
+    }
+  </script> -->
+
+  <%- include('../footer') %>

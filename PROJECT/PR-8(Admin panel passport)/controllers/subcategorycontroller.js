@@ -4,7 +4,7 @@ const subcategoryModel = require('../models/subcategorymodel');
 const addSubCategory = async (req, res) => {
 
     try {
-        let category = await categoryModel.find({})
+        let category = await categoryModel.find({status:"active"})
         return res.render('subcategory/addsubcategory', {
             category: category
         });
@@ -71,7 +71,7 @@ const editSubCategory = async (req, res) => {
 const updateSubCategory = async (req, res) => {
     try {
         const { editid, category, subcategory } = req.body;
-        
+
         await subcategoryModel.findByIdAndUpdate(editid, {
             categoryid: category,
             subcategory: subcategory
@@ -85,21 +85,24 @@ const updateSubCategory = async (req, res) => {
 
 const changeStatus = async (req, res) => {
     try {
-      const status = req.query.status;
-      const id = req.query.id;
-      if (status == "active") {
-        await subcategoryModel.findByIdAndUpdate(id, { status: "deactive" });
+        const status = req.query.status;
+        const id = req.query.id;
+        if (status == "active") {
+            await subcategoryModel.findByIdAndUpdate(id, {
+                status: "deactive"
+            });
+        } else {
+            await subcategoryModel.findByIdAndUpdate(id, {
+                status: "active"
+            });
+        }
         return res.redirect("/subcategory/viewsubcategory");
-      } else {
-        await subcategoryModel.findByIdAndUpdate(id, { status: "active" });
-        return res.redirect("/subcategory/viewsubcategory");
-      }
     } catch (err) {
-      console.log(err);
-      return false;
+        console.log(err);
+        return false;
     }
 };
 
 module.exports = {
-    addSubCategory, addSubCategoryPage, viewSubCategory, deleteSubCategory, editSubCategory,updateSubCategory,changeStatus
+    addSubCategory, addSubCategoryPage, viewSubCategory, deleteSubCategory, editSubCategory, updateSubCategory, changeStatus
 }
