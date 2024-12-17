@@ -2,7 +2,7 @@ const express = require('express');
 
 const passport = require("passport");
 
-const { addProduct, viewProductPage,addProductDetailPage,deleteProduct,editProduct,updateProductDetail } = require('../controllers/productcontroller');
+const { addProduct, viewProductPage,addProductDetailPage,deleteProduct,editProduct,updateProductDetail,ajaxsubcatfetch,ajaxcatfetch } = require('../controllers/productcontroller');
 
 const routes = express.Router();
 
@@ -27,6 +27,7 @@ routes.get('/deleteproduct',deleteProduct);
 routes.get('/editeproduct',passport.checkUser,editProduct);
 routes.post('/updateproductdetail',upload,updateProductDetail)
 
-// routes.get('/ajaxcatfetch',ajaxcatfetch)
+routes.get('/ajaxcatfetch',ajaxcatfetch)
+routes.get('/ajaxsubcatfetch',ajaxsubcatfetch)
 
 module.exports = routes

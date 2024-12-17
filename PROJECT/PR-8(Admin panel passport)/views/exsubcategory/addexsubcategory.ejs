@@ -23,11 +23,6 @@
                   <label for="exampleInputEmail1" class="form-label">SubCategory Field</label>
                   <select name="subcategory" id="subcategory" class="form-select">
                     <option value="">-----select-subcategory-option------</option>
-                    <% subcategory.map ((subcategory)=>{ %>
-                        <option class="text-dark" value="<%= subcategory._id %>">
-                            <%= subcategory.subcategory %>
-                        </option>
-                    <%  }) %>
                   </select>
                 </div>
                 <div class="mb-3">

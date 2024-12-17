@@ -91,7 +91,7 @@ const updateExSubCategory = async (req, res) => {
 const ajaxCatFetch = async(req,res) =>{
     try {
         let id = req.query.id;
-        let category = await subcategoryModel.find({categoryid:id});
+        let category = await subcategoryModel.find({categoryid:id, status: 'active'});
         
         return res.send({
             success:true,

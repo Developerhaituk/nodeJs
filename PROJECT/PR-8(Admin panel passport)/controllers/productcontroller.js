@@ -128,23 +128,39 @@ const updateProductDetail = async (req, res) => {
 };
 
 
-// const ajaxcatfetch = async(req,res) =>{
-//     try {
+const ajaxcatfetch = async(req,res) =>{
+    try {
 
-//         const id=req.query.id    
-//         const subcategory=await exsubcategoryModel.find({subcategoryid:id})    
-//         return res.send({
-//             success:true,
-//             message:'hali gayu',
-//             subcategory
-//         })
+        const id=req.query.id    
+        const subcategory=await subcategoryModel.find({categoryid:id, status: 'active'})    
+        return res.send({
+            success:true,
+            message:'ajax is working',
+            subcategory
+        })
 
-//     } catch (error) {
-//         console.log(error);
-//         return false
-//     }
-// }
+    } catch (error) {
+        console.log(error);
+        return false
+    }
+}
+const ajaxsubcatfetch = async(req,res) =>{
+    try {
+
+        const id=req.query.id    
+        const exsubcategory=await exsubcategoryModel.find({subcategoryid:id, status: 'active'})    
+        return res.send({
+            success:true,
+            message:'ajax is working',
+            exsubcategory
+        })
+
+    } catch (error) {
+        console.log(error);
+        return false
+    }
+}
 
 module.exports = {
-    addProduct, viewProductPage, addProductDetailPage, deleteProduct, editProduct, updateProductDetail
+    addProduct, viewProductPage, addProductDetailPage, deleteProduct, editProduct, updateProductDetail,ajaxsubcatfetch,ajaxcatfetch
 }

@@ -23,22 +23,22 @@
                   <label for="exampleInputEmail1" class="form-label">SubCategory Field</label>
                   <select name="subcategory" onchange="subcatrecord()" id="subcategory" class="form-select">
                     <option value="">-----select-subcategory-option------</option>
-                    <% subcategory.map ((subcat)=>{ %>
+                    <!-- <% subcategory.map ((subcat)=>{ %>
                       <option class="text-dark" value="<%= subcat._id %>">
                         <%= subcat.subcategory %>
                       </option>
-                      <% }) %>
+                      <% }) %> -->
                   </select>
                 </div>
                 <div class="mb-3">
                   <label for="exampleInputEmail1" class="form-label">ExSubCategory Field</label>
                   <select name="exsubcategory" id="exsubcategory" class="form-select">
                     <option value="">-----select-exsubcategory-option------</option>
-                    <% exsubcategory.map ((exsubcat)=>{ %>
+                    <!-- <% exsubcategory.map ((exsubcat)=>{ %>
                       <option class="text-dark" value="<%= exsubcat._id %>">
                         <%= exsubcat.exsubcategory %>
                       </option>
-                      <% }) %>
+                      <% }) %> -->
                   </select>
                 </div>
                 <div class="mb-3">
@@ -95,18 +95,18 @@
     }
 
     const subcatrecord = () => {
-      let subcategory = document.getElementById('subcategory').value
+      let exsubcategory = document.getElementById('subcategory').value
       $.ajax({
         type: "GET",
-        url: `/product/ajaxcatfetch?id=${subcategory}`,
+        url: `/product/ajaxsubcatfetch?id=${exsubcategory}`,
         success: function (res) {
-          const subcategory = res.subcategory
+          const exsubcategory = res.exsubcategory
 
           let tbl = ""
           tbl += `<option value="">-----select-exsubcategory-option--</option>`
-          subcategory.map((subcat) => {
+          exsubcategory.map((exsubcat) => {
             tbl += `
-              <option value=${subcat._id} > ${subcat.exsubcategory}</option>
+              <option value=${exsubcat._id} > ${exsubcat.exsubcategory}</option>
 
              `
           })
