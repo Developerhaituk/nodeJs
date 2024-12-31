@@ -93,7 +93,6 @@ const updateProductDetail = async (req, res) => {
         const { category, subcategory, exsubcategory, name, price, description,editid} = req.body;
         console.log(editid);
         
-
         if (req.file) {
             const single = await productModel.findById(editid);
 
