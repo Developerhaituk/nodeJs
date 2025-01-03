@@ -161,12 +161,12 @@ const editcart = async(req,res) =>{
 const updatecart = async(req,res) =>{
     try {
         const { id,qty } = req.body;
-        await cartmodel.findById(id);
+        console.log(id);
 
             await cartmodel.findByIdAndUpdate(id, {
                 qty: qty
             });
-            return res.redirect("/product/viewdata");
+            return res.redirect("/product/viewcart");
     } catch (error) {
         console.log(error);
         return false;

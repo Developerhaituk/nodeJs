@@ -28,10 +28,11 @@
     </header>
             <div class="row">
 <form action="/product/updatecart" method="post" >
+    <input type="hidden" name="id" value="<%= cart._id %>">
     <input type="text" value="<%= cart.productName %>" disabled>
     <input type="text" value="<%= cart.description %>" disabled>
     <input type="text" value="<%= cart.price %>" disabled>
-    <input type="number" value="<%= cart.qty %>">
+    <input type="number" name="qty" value="<%= cart.qty %>">
     <input type="file" disabled><img src="../<%= cart.image %>" class="pt-2 rounded card-img-top" style="width: 100px;" alt="...">
     <button type="submit" class="btn btn-primary">submit</button>
 </form>

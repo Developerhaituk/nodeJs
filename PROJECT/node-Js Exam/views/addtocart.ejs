@@ -37,14 +37,13 @@
                     <p class="card-text"><%= val.price %></p>
                     <p class="card-text"><%= val.qty %></p>
                     <a href="#" class="btn btn-primary">buy now</a>
-                    <!-- <a href="#" class="btn btn-primary">update</a> -->
-                    <a href="/product/editcart?id=<%=val.id%>" class="btn btn-primary py-1"
-                        style="font-size: 20px !important;">
-                        update
-                    </a>
                     <a href="/product/deletecart?id=<%=val.id%>" class="btn btn-danger py-2"
                         style="font-size: 16px !important;">
                         Delete
+                    </a>
+                    <a href="/product/editcart?id=<%=val.id%>" class="btn btn-primary py-1"
+                        style="font-size: 20px !important;">
+                        update
                     </a>
                             </div>
                     </div>
