@@ -3,7 +3,7 @@ const express = require('express');
 const routes = express.Router();
 
 const passport = require("passport")
-x
+
 const { loginPage, loginUser, Register, registerUser, dashBoard, logout, forgotPassword, submitEmail, otpPage, submitotp, setnewPass, newPass, changepasspage, changepass, viewprofilePage, editProfilePage, updateProfile } = require('../controllers/admincontroller');
 
 routes.get('/', loginPage);

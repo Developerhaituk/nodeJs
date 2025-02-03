@@ -49,11 +49,6 @@ const addUser = async (req, res) => {
         });
       }
     }
-    let token = await jwt.sign({ user: user }, "Hk", { expiresIn: "2hr" });
-    return res.status(200).send({
-      success: true,
-      token: token,
-    });
   } catch (err) {
     return res.status(400).send({
       success: false,
