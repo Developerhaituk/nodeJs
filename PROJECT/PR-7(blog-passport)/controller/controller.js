@@ -3,7 +3,6 @@ const blogmodels = require('../models/view')
 const fs = require('fs')
 const resiterpage = (req, res) => {
     return res.render('resiter')
-
 }
 const loginpage = (req, res) => {
     return res.render('login')

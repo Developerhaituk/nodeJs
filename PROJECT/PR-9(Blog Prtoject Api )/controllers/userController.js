@@ -20,7 +20,9 @@ const viewUser = async (req, res) => {
 
 const addUser = async (req, res) => {
   try {
-    const { name, email, password, city, phone ,role} = req.body;
+    let { name, email, password, city, phone ,role ,gender} = req.body;
+
+    name = name.trim()
 
     let dup = await userModel.findOne({ email: email });
     if (dup) {
@@ -28,7 +30,7 @@ const addUser = async (req, res) => {
         message: "User already exists",
       });
     } else {
-      if (!name || !email || !password || !city || !phone || !role) {
+      if (!name || !email || !password || !city || !phone || !role || !gender) {
         return res.status(400).send({
           success: false,
           message: "All Fields Are Required",
@@ -40,7 +42,8 @@ const addUser = async (req, res) => {
           password: password,
           city: city,
           phone:phone,
-          role:role
+          role:role,
+          gender:gender
         });
         return res.status(200).send({
           success: true,

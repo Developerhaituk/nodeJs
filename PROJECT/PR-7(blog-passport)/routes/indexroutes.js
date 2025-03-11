@@ -21,14 +21,14 @@ const storage = multer.diskStorage({
   const upload = multer({ storage: storage }).single('image')
 
 routes.get('/', loginpage);
-routes.get('/register',passport.checkUser,resiterpage); 
+routes.get('/register',passport.checkUser,resiterpage);
 routes.post('/insert',Resiterusers)
 routes.post('/login',passport.authenticate('local', { failureRedirect: '/' }),loginuseres)
-routes.get('/addblogpage',passport.checkUser,addblogpage); 
+routes.get('/addblogpage',passport.checkUser,addblogpage);
 routes.post('/addblog',upload,addblogusers)
-routes.get('/viewblog',passport.checkUser,viewblog); 
-routes.get('/delete',deleterecord); 
-routes.get('/edit',editrecord); 
+routes.get('/viewblog',passport.checkUser,viewblog);
+routes.get('/delete',deleterecord);
+routes.get('/edit',editrecord);
 routes.post('/up',upload,upblog)
 routes.get('/logout', logout)
 

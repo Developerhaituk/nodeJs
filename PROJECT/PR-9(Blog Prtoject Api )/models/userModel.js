@@ -25,7 +25,11 @@ const userSchema=mongoose.Schema({
     role : {
         type:String,
         default:"user"
-    }
+    },
+    gender : {
+        type:String,
+        require:true
+    },
 });
 const user=mongoose.model('user',userSchema);
 module.exports=user;

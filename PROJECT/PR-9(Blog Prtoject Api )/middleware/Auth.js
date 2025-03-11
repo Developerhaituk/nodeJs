@@ -47,9 +47,6 @@ const Admin = async (req,res,next) => {
         });
     }
 }
-
-
 module.exports = {
     verifyToken,Admin
-
 }

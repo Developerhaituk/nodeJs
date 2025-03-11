@@ -24,6 +24,4 @@ const storage = multer.diskStorage({
   routes.delete('/deleteblog',verifyToken,deleteBlog);
   routes.put('/updateblog',upload,verifyToken,updateBlog);
   
-
-
 module.exports = routes ;
